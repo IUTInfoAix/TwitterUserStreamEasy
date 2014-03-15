@@ -1,7 +1,8 @@
 package fr.univaix.iut.pokebattle.tuse;
 
-import com.twitter.hbc.twitter4j.handler.UserstreamHandler;
-import com.twitter.hbc.twitter4j.message.DisconnectMessage;
+import com.twitter.hbc.twitter4j.v3.handler.UserstreamHandler;
+import com.twitter.hbc.twitter4j.v3.message.DisconnectMessage;
+import com.twitter.hbc.twitter4j.v3.message.StallWarningMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import twitter4j.*;
@@ -21,8 +22,18 @@ public class UserStreamAdapter implements UserstreamHandler {
     }
 
     @Override
+    public void onStallWarningMessage(StallWarningMessage warning) {
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "StallWarningMessage");
+    }
+
+    @Override
     public void onUnknownMessageType(String s) {
         LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onUnknownMessageType");
+    }
+
+    @Override
+    public void onRetweet(User source, User target, Status retweetedStatus) {
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onRetweet");
     }
 
     @Override
@@ -48,11 +59,6 @@ public class UserStreamAdapter implements UserstreamHandler {
     @Override
     public void onFollow(User source, User followedUser) {
         LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onFollow");
-    }
-
-    @Override
-    public void onRetweet(User source, User target, Status retweetedStatus) {
-        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onRetweet");
     }
 
     @Override
@@ -128,6 +134,11 @@ public class UserStreamAdapter implements UserstreamHandler {
     @Override
     public void onScrubGeo(long userId, long upToStatusId) {
         LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onScrubGeo");
+    }
+
+    @Override
+    public void onStallWarning(StallWarning warning) {
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onStallWarning");
     }
 
     @Override

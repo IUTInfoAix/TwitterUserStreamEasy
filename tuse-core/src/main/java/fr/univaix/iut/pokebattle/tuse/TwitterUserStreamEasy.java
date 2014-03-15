@@ -10,7 +10,7 @@ import com.twitter.hbc.httpclient.BasicClient;
 import com.twitter.hbc.httpclient.ControlStreamException;
 import com.twitter.hbc.httpclient.auth.Authentication;
 import com.twitter.hbc.httpclient.auth.OAuth1;
-import com.twitter.hbc.twitter4j.Twitter4jUserstreamClient;
+import com.twitter.hbc.twitter4j.v3.Twitter4jUserstreamClient;
 import twitter4j.UserStreamListener;
 
 import java.io.IOException;
@@ -42,8 +42,8 @@ public class TwitterUserStreamEasy {
     private void oauth(String consumerKey, String consumerSecret, String token, String tokenSecret)
             throws InterruptedException, ControlStreamException, IOException {
         // Create an appropriately sized blocking queue
-        BlockingQueue<String> queue = new LinkedBlockingQueue<String>(10000);
-        BlockingQueue<Event> eventQueue = new LinkedBlockingQueue<Event>(1000);
+        BlockingQueue<String> queue = new LinkedBlockingQueue<>(10000);
+        BlockingQueue<Event> eventQueue = new LinkedBlockingQueue<>(1000);
 
         // Define our endpoint: By default, delimited=length is set (we need
         // this for our processor)
